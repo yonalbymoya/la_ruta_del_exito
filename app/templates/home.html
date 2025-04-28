@@ -1,0 +1,71 @@
+<!-- templates/home.html -->
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!-- Sección Rifa Actual -->
+<section id="actual" class="section actual">
+  <div class="container">
+    <h2>Rifa Actual</h2>
+    <div class="actual-card">
+      <img src="{% static 'img/actual_rifa.jpg' %}" alt="Rifa Actual" />
+      <h3>Camión Kenworth T800</h3>
+      <p>Participa para ganar este increíble camión de carga.</p>
+      <a href="{% url 'participar' %}" class="btn">Participar Ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Rifas Pasadas -->
+<section id="eventos" class="section eventos">
+  <div class="container">
+    <h2>Eventos Pasados</h2>
+    <div class="eventos-grid">
+      <div
+        class="evento-card flex-shrink-0 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 px-2"
+      >
+        <img
+          src="{% static 'img/evento1.jpg' %}"
+          alt="Evento 1"
+          class="w-full h-auto shadow-lg rounded-md"
+        />
+        <h4>Ganador 2024</h4>
+      </div>
+      <div
+        class="evento-card flex-shrink-0 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 px-2"
+      >
+        <img
+          src="{% static 'img/evento2.jpg' %}"
+          alt="Evento 2"
+          class="w-full h-auto shadow-lg rounded-md"
+        />
+        <h4>Ganador 2023</h4>
+      </div>
+      <div
+        class="evento-card flex-shrink-0 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 px-2"
+      >
+        <img
+          src="{% static 'img/evento3.jpg' %}"
+          alt="Evento 3"
+          class="w-full h-auto shadow-lg rounded-md"
+        />
+        <h4>Ganador 2022</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Métodos de Pago -->
+<section id="pagos" class="section pagos">
+  <div class="container">
+    <h2>Métodos de Pago</h2>
+    <ul class="pagos-lista flex flex-wrap justify-center">
+      <li class="w-1/2 sm:w-1/4 md:w-1/5 p-2 text-center">
+        Transferencia Bancaria
+      </li>
+      <li class="w-1/2 sm:w-1/4 md:w-1/5 p-2 text-center">Pago Móvil</li>
+      <li class="w-1/2 sm:w-1/4 md:w-1/5 p-2 text-center">PayPal</li>
+      <li class="w-1/2 sm:w-1/4 md:w-1/5 p-2 text-center">Zelle</li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

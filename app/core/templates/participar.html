@@ -1,0 +1,196 @@
+<!-- core/templates/participar.html -->
+{% extends "base.html" %} {% block content %} {% load static %}
+<!-- Sección Rifa Activa -->
+<section id="rifa-activa" class="section rifa-activa py-12">
+  <div class="container mx-auto text-center">
+    <!-- Costo del boleto -->
+    <div class="coste mb-4">
+      <p
+        class="text-xl font-bold text-gray-700 hover:text-gray-500"
+        title="Dólares americanos"
+      >
+        Total: $2.00 USD (1 boleto)
+      </p>
+    </div>
+
+    <!-- Imagen grande -->
+    <div class="rifa-imagen mb-8">
+      <img
+        src="{% static 'img/evento1.jpg' %}"
+        alt="Rifa Activa"
+        class="w-full h-auto rounded-lg shadow-lg"
+      />
+    </div>
+
+    <!-- Información del evento -->
+    <div
+      class="rifa-info mx-auto w-full max-w-4xl border-2 border-orange-500 p-6 rounded-lg shadow-xl"
+    >
+      <div class="fecha-evento text-xl font-bold text-gray-700 mb-4">
+        <p>02 MAY 2025 10:00 PM</p>
+      </div>
+      <h3 class="text-3xl text-orange-600 font-semibold mt-4 mb-6">
+        Combo Vieja Escuela 2.0
+      </h3>
+      <div class="premios mb-6">
+        <h4 class="text-2xl font-bold text-gray-700">PREMIOS:</h4>
+        <ul class="list-none pl-0 mt-2">
+          <h2>Ford Fiesta 2003</h2>
+          <h2>Suzuki Gn 2016</h2>
+        </ul>
+      </div>
+      <div class="detalles mb-6">
+        <p class="text-lg font-medium text-gray-600">
+          Fecha finaliza: 2 de mayo
+        </p>
+        <p class="text-lg font-medium text-gray-600">Lotería de Súper Gana</p>
+        <p class="text-lg font-medium text-gray-600">Ticket a (2$)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tickets" class="section tickets py-12">
+  <div class="flex items-center justify-center space-x-4 mt-4">
+    <button
+      id="minusButton"
+      class="btn bg-orange-500 text-white rounded-full w-14 h-14 flex items-center justify-center disabled:bg-gray-400 disabled:text-gray-600"
+    >
+      -
+    </button>
+    <span id="ticketCount" class="text-lg">0</span>
+    <button
+      id="plusButton"
+      class="btn bg-orange-500 text-white rounded-full w-14 h-14 flex items-center justify-center disabled:bg-gray-400 disabled:text-gray-600"
+    >
+      +
+    </button>
+  </div>
+
+  <div class="text-lg font-semibold mb-4">
+    Total: USD <span id="total">0.00</span>
+  </div>
+
+  <!-- Botón llamativo -->
+  <button
+    class="w-full py-3 text-xl bg-orange-500 text-white rounded-full hover:bg-orange-600 transition mb-4"
+  >
+    VOY A TENER SUERTE
+  </button>
+
+  <!-- Formulario de usuario -->
+  <form>
+    <div class="flex mb-4 justify-between gap-4">
+      <input
+        type="text"
+        placeholder="Nombre y Apellido"
+        class="w-1/2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+      />
+      <input
+        type="tel"
+        placeholder="Número de Teléfono"
+        class="w-1/2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+      />
+    </div>
+
+    <!-- Métodos de pago -->
+    <div class="mb-4">
+      <label for="payment-method" class="block text-lg font-semibold mb-2"
+        >Seleccionar método de pago:</label
+      >
+      <div id="payment-method" class="grid grid-cols-2 gap-4">
+        <button
+          class="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+        >
+          Pagomóvil
+        </button>
+        <button
+          class="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+        >
+          Zelle
+        </button>
+        <button
+          class="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+        >
+          Binance
+        </button>
+        <button
+          class="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+        >
+          Banco Falabella
+        </button>
+      </div>
+    </div>
+
+    <!-- Cargar comprobante -->
+    <div class="flex items-center mb-4">
+      <input
+        type="file"
+        id="payment-proof"
+        class="w-full p-3 border rounded-lg"
+      />
+      <input type="checkbox" id="notify" class="ml-4" />
+      <label for="notify" class="text-lg ml-2">Notificarme</label>
+    </div>
+
+    <!-- Método de pago seleccionado -->
+    <div class="text-sm mb-4">
+      Método de pago: <span id="selected-method">Ninguno</span>
+    </div>
+
+    <!-- Confirmar y notificar -->
+    <button
+      id="confirmButton"
+      class="btn bg-orange-500 text-white rounded-full py-2 px-6 mt-6"
+    >
+      Confirmar y notificar
+    </button>
+  </form>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let ticketCount = 0;
+    const maxTickets = 100;
+    const minTickets = 0;
+    const ticketCountDisplay = document.getElementById("ticketCount");
+    const minusButton = document.getElementById("minusButton");
+    const plusButton = document.getElementById("plusButton");
+
+    // Actualiza la cantidad de tickets y la habilitación de los botones
+    function updateTicketCount() {
+      ticketCountDisplay.textContent = ticketCount;
+      minusButton.disabled = ticketCount === minTickets;
+      plusButton.disabled = ticketCount === maxTickets;
+    }
+
+    // Botón para restar
+    minusButton.addEventListener("click", function () {
+      if (ticketCount > minTickets) {
+        ticketCount--;
+        updateTicketCount();
+      }
+    });
+
+    // Botón para sumar
+    plusButton.addEventListener("click", function () {
+      if (ticketCount < maxTickets) {
+        ticketCount++;
+        updateTicketCount();
+      }
+    });
+
+    // Inicializa la vista
+    updateTicketCount();
+  });
+</script>
+
+<script>
+  document
+    .getElementById("confirmButton")
+    .addEventListener("click", function () {
+      alert("¡Confirmado y notificado!");
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+camino_del_exito/
+├── app/
+│   ├── manage.py
+│   ├── camino_del_exito/ (settings, urls, wsgi)
+│   └── website/ (nuestra app principal)
+│       ├── migrations/
+│       ├── static/
+│       │   ├── css/
+│       │   ├── images/
+│       │   └── js/
+│       ├── templates/
+│       │   ├── base.html   (Header y Footer aquí)
+│       │   └── home.html   (Página principal aquí)
+│       ├── admin.py
+│       ├── apps.py
+│       ├── models.py
+│       ├── views.py
+│       ├── urls.py
+│       └── forms.py (opcional)
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+

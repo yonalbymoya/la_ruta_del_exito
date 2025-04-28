@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camino al Éxito</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-white border-top border-bottom border-warning fixed-top">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center py-3">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/">
+              <img
+                src="{% static 'img/logo.jpeg' %}"
+                alt="Camino al Éxito Logo"
+                class="img-fluid rounded-3"
+                style="max-width: 150px"
+              />
+            </a>
+          </div>
+          <!-- Título -->
+          <div class="title text-center flex-grow-1">
+            <h1 class="text-warning" style="text-shadow: 2px 2px 5px gray">
+              Camino al Éxito
+            </h1>
+          </div>
+          <!-- Menú -->
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#metodos">Métodos de Pago</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contact">Contacto</a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    href="#eventos"
+                    style="background-color: #ffa500; color: #808080"
+                    >Eventos</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mt-5 pt-5">
+      <main class="container">{% block content %}{% endblock %}</main>
+      <!-- Aquí va el contenido de la página -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-warning text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 text-center text-md-start">
+            <h3>Camino al Éxito</h3>
+            <img
+              src="{% static 'img/logo.jpeg' %}"
+              alt="Logo"
+              class="img-fluid rounded-3"
+              style="max-width: 150px"
+            />
+          </div>
+          <div class="col-md-4 text-center">
+            <p>Camino del Éxito te lleva a cumplir tus sueños sobre ruedas.</p>
+            <p>¡Participa y gana grandes premios!</p>
+          </div>
+          <div class="col-md-4 text-center text-md-end">
+            <h3>Contacto</h3>
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="https://api.whatsapp.com/send?phone=584242103148"
+                  target="_blank"
+                >
+                  WhatsApp
+                </a>
+              </li>
+              <li>Caracas, Distrito Capital, Venezuela</li>
+              <li>+58 4242103148</li>
+            </ul>
+            <h3>Síguenos</h3>
+            <a
+              href="https://www.instagram.com/jeancorluis_stunts"
+              target="_blank"
+              class="fa fa-instagram"
+              style="font-size: 30px; color: white"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Hacer que el header cambie de tamaño al hacer scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("shrink");
+        } else {
+          header.classList.remove("shrink");
+        }
+      });
+    </script>
+  </body>
+</html>
